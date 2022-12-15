@@ -1,5 +1,6 @@
 const Employee = require('../models/employee');
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator/check');
 
 exports.getEmployees = (req, res, next) => {
     Employee.findAll()
@@ -31,6 +32,13 @@ exports.getEmployee = (req, res, next) => {
 }
 
 exports.registerEmployee = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const error = new Error('Validation failed, entered data is incorrect.');
+        error.statusCode = 422;
+        throw error;
+    }
+
     const fullName = req.body.fullName;
     const accessType = req.body.accessType;
     const email = req.body.email;
@@ -55,13 +63,22 @@ exports.registerEmployee = (req, res, next) => {
                     });
                 })
                 .catch(err => {
-                    console.log('Error adding the employee!');
-                    console.log(err);
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                      }
+                      next(err);
                 });
         });
 }
 
 exports.updateEmployee = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const error = new Error('Validation failed, entered data is incorrect.');
+        error.statusCode = 422;
+        throw error;
+    }
+
     const employeeId = req.params.id;
     const updatedFullName = req.body.fullName;
     const updatedAccessType = req.body.accessType;
@@ -80,8 +97,10 @@ exports.updateEmployee = (req, res, next) => {
             });
         })
         .catch(err => {
-            console.log('Error updating one specific employee!');
-            console.log(err);
+            if (!err.statusCode) {
+                err.statusCode = 500;
+              }
+              next(err);
         });
 }
 

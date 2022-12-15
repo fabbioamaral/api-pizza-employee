@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const employeesController = require('../controllers/employees');
+const { body } = require('express-validator/check');
 
 // GET /employees
 router.get('/employees', employeesController.getEmployees);
@@ -9,10 +10,24 @@ router.get('/employees', employeesController.getEmployees);
 router.get('/employee/:employeeId', employeesController.getEmployee);
 
 // POST /employee
-router.post('/employee', employeesController.registerEmployee);
+router.post('/employee', [
+    body('fullName')
+        .trim()
+        .isLength({ min: 5 }),
+    body('email')
+        .trim()
+        .isEmail()
+], employeesController.registerEmployee);
 
 // PUT /employee/:employeeId
-router.put('/employee/:employeeId', employeesController.updateEmployee);
+router.put('/employee/:employeeId', [
+    body('fullName')
+        .trim()
+        .isLength({ min: 5 }),
+    body('email')
+        .trim()
+        .isEmail()
+], employeesController.updateEmployee);
 
 // DELETE /employee/:employeeId
 router.delete('/employee/:employeeId', employeesController.deleteEmployee);

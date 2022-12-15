@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express()
 const bodyParser = require('body-parser');
-
 const sequelize = require('./database');
 const employeesRoutes = require('./routes/employees');
 
@@ -15,6 +14,14 @@ app.use((req, res, next) => {
 });
 
 app.use('', employeesRoutes);
+
+app.use((error, req, res, next) => {
+    console.log(error);
+    const status = error.statusCode || 500;
+    const message = error.message;
+    const data = error.data;
+    res.status(status).json({ message: message, data: data });
+});
 
 sequelize.sync().then(result => {
     console.log('Sequelize started OK!');
