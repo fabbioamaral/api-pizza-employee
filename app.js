@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/employees', employeesRoutes);
+app.use('', employeesRoutes);
 
 sequelize.sync().then(result => {
     console.log('Sequelize started OK!');
