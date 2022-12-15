@@ -13,7 +13,7 @@ const Employee = sequelize.define('employee', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    acessType: {
+    accessType: {
         type: Sequelize.STRING,
         allowNull: false
     },
