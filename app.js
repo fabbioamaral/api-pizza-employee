@@ -13,6 +13,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/login', authRoutes);
+app.use('/signup', authRoutes);
 app.use('', employeesRoutes);
 
 app.use((error, req, res, next) => {
