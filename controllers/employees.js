@@ -40,17 +40,19 @@ exports.registerEmployee = (req, res, next) => {
     }
 
     const fullName = req.body.fullName;
-    const accessType = req.body.accessType;
-    const email = req.body.email;
-    const personalPhoto = req.body.personalPhoto;
+    const role = req.body.role;
+    const salary = req.body.salary;
+    const cellphone = req.body.cellphone;
     const password = req.body.password;
+    const personalPhoto = req.body.personalPhoto;
     bcrypt
         .hash(password, 12)
         .then(hashedPassword => {
             Employee.create({
                 fullName,
-                accessType,
-                email,
+                role,
+                salary,
+                cellphone,
                 password: hashedPassword,
                 personalPhoto
             })
@@ -81,13 +83,19 @@ exports.updateEmployee = (req, res, next) => {
 
     const employeeId = req.params.id;
     const updatedFullName = req.body.fullName;
-    const updatedAccessType = req.body.accessType;
-    const updatedPersonalPhoto = req.body.personalPhoto;
+    const role = req.body.role;
+    const salary = req.body.salary;
+    const cellphone = req.body.cellphone;
+    const password = req.body.password;
+    const personalPhoto = req.body.personalPhoto;
     Employee.findByPk(employeeId)
         .then(employee => {
             if (employee) {
                 employee.fullName = updatedFullName;
-                employee.accessType = updatedAccessType;
+                employee.role = role;
+                employee.salary = salary;
+                employee.cellphone = cellphone;
+                employee.password = password;
                 employee.personalPhoto = updatedPersonalPhoto;
                 return employee.save();
             }

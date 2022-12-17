@@ -1,4 +1,5 @@
-const Sequelize = require('sequelize').Sequelize;
+// const Sequelize = require('sequelize').Sequelize;
+const { Sequelize, DataTypes } = require("sequelize");
 
 const sequelize = require('../database');
 
@@ -13,19 +14,21 @@ const Employee = sequelize.define('employee', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    accessType: {
+    role: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        required: true
     },
-    email: {
+    salary: DataTypes.NUMBER,
+    cellphone: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true        
     },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
+    // address: {
+    //     type: Sequelize.STRING,
+    //     allowNull: false,
+    // },
     personalPhoto: Sequelize.STRING
 
 });
