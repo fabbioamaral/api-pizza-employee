@@ -3,6 +3,7 @@ const app = express()
 const bodyParser = require('body-parser');
 const sequelize = require('./database');
 const employeesRoutes = require('./routes/employees');
+const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.json());
 
@@ -13,9 +14,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/login', authRoutes);
-app.use('/signup', authRoutes);
 app.use('', employeesRoutes);
+app.use('/auth', authRoutes);
 
 app.use((error, req, res, next) => {
     console.log(error);
