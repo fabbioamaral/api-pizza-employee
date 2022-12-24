@@ -1,5 +1,5 @@
 // const Sequelize = require('sequelize').Sequelize;
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize } = require("sequelize");
 
 const sequelize = require('../database');
 
@@ -19,16 +19,19 @@ const Employee = sequelize.define('employee', {
         allowNull: false,
         required: true
     },
-    salary: DataTypes.NUMBER,
+    salary: {
+        type: Sequelize.DECIMAL({ precision: 10, scale: 2 }),
+    },
     cellphone: {
         type: Sequelize.STRING,
         allowNull: false,
+        required: true,
         unique: true        
     },
-    // address: {
-    //     type: Sequelize.STRING,
-    //     allowNull: false,
-    // },
+    address: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
     personalPhoto: Sequelize.STRING
 
 });

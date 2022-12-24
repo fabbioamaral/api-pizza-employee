@@ -1,6 +1,6 @@
 const Employee = require('../models/employee');
 const bcrypt = require('bcryptjs');
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 
 exports.getEmployees = (req, res, next) => {
     Employee.findAll()
@@ -43,61 +43,68 @@ exports.registerEmployee = (req, res, next) => {
     const role = req.body.role;
     const salary = req.body.salary;
     const cellphone = req.body.cellphone;
-    const password = req.body.password;
     const personalPhoto = req.body.personalPhoto;
-    bcrypt
-        .hash(password, 12)
-        .then(hashedPassword => {
-            Employee.create({
-                fullName,
-                role,
-                salary,
-                cellphone,
-                password: hashedPassword,
-                personalPhoto
-            })
-                .then(result => {
-                    console.log('Employee added!');
-                    console.log(result);
-                    res.status(201).json({
-                        message: 'Employee has been created successfully.',
-                        employees: result
-                    });
-                })
-                .catch(err => {
-                    if (!err.statusCode) {
-                        err.statusCode = 500;
-                      }
-                      next(err);
-                });
+    const address = req.body.address;
+
+    Employee.create({
+        fullName,
+        role,
+        salary,
+        cellphone,
+        personalPhoto,
+        address
+    })
+        .then(result => {
+            console.log('Employee added!');
+            console.log(result);
+            res.status(201).json({
+                message: 'Employee has been created successfully.',
+                employees: result
+            });
+        })
+        .catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+                }
+                next(err);
         });
 }
 
 exports.updateEmployee = (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        const error = new Error('Validation failed, entered data is incorrect.');
-        error.statusCode = 422;
-        throw error;
+    const errors = validationResult(req); 
+    if (!errors.isEmpty()) { 
+        const error = new Error('Validation failed, entered data is incorrect.'); 
+        error.statusCode = 422; 
+        throw error; 
     }
+    const employeeId = req.params.employeeId;
 
-    const employeeId = req.params.id;
-    const updatedFullName = req.body.fullName;
-    const role = req.body.role;
-    const salary = req.body.salary;
-    const cellphone = req.body.cellphone;
-    const password = req.body.password;
-    const personalPhoto = req.body.personalPhoto;
     Employee.findByPk(employeeId)
         .then(employee => {
+            if (!employee) {
+                const error = new Error('Could not find employee.');
+                error.statusCode = 404;
+                throw error; 
+            }
             if (employee) {
-                employee.fullName = updatedFullName;
-                employee.role = role;
-                employee.salary = salary;
-                employee.cellphone = cellphone;
-                employee.password = password;
-                employee.personalPhoto = updatedPersonalPhoto;
-                return employee.save();
+                const updatedFullName = req.body.fullName;
+                const updatedRole = req.body.role;
+                const updatedSalary = req.body.salary;
+                const updatedCellphone = req.body.cellphone;
+                const updatedPersonalPhoto = req.body.personalPhoto;
+                const updatedAddress = req.body.address;
+                
+                return Employee.update(
+                    { 
+                        fullName: updatedFullName,
+                        role: updatedRole,
+                        salary: updatedSalary,
+                        cellphone: updatedCellphone,
+                        personalPhoto: updatedPersonalPhoto,
+                        address: updatedAddress                
+                    },
+                    { where: { id: employeeId } }
+                );                
             }
         }).then(result => {
             res.status(200).json({
@@ -113,22 +120,24 @@ exports.updateEmployee = (req, res, next) => {
 }
 
 exports.deleteEmployee = (req, res, next) => {
-    const accessType = req.params.accessType;
-    if (accessType !== 'admin') {
-        const error = new Error('Not authorized!');
-        error.statusCode = 403;
-        throw error;
-    }
-    const employeeId = req.params.id;
+    //TO-DO: check if user who's trying to delete an employee has access type 'admin'
+    
+    // const accessType = req.params.accessType;
+    // if (accessType !== 'admin') {
+    //     const error = new Error('Not authorized!');
+    //     error.statusCode = 403;
+    //     throw error;
+    // }
+    const employeeId = req.params.employeeId;
     Employee.findByPk(employeeId)
         .then(employee => {
             if (!employee) {
-                const error = new Error('Could not find post.');
+                const error = new Error('Could not find employee.');
                 error.statusCode = 404;
                 throw error;
             }
 
-            return Employee.destroy({where: employeeId});
+            return Employee.destroy({where: { id: employeeId }});
         })
         .then(result => {
             res.status(200).json({ message: 'Deleted employee.' });
