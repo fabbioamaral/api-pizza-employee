@@ -1,6 +1,7 @@
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 exports.signup = (req, res, next) => {
     const errors = validationResult(req);
@@ -25,7 +26,7 @@ exports.signup = (req, res, next) => {
             }); 
             return user.save();
         }).then(result => {
-            res.status(201).jsom({ message: 'User created!', userId: result._id });
+            res.status(201).json({ message: 'User created!', userId: result._id });
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -38,9 +39,8 @@ exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     let loadedUser;
-
-    User.findOne({email})
-        then(user => {
+    User.findOne({where: { email }})
+        .then(user => {
             if (!user) {
                 const error = new Error('User not found');
                 error.statusCode = 401;
@@ -55,6 +55,17 @@ exports.login = (req, res, next) => {
                 error.statusCode = 401;
                 throw error;
             }
+            console.log(loadedUser);
+            const token = jwt.sign(
+                {
+                email: loadedUser,
+                userId: loadedUser.id.toString()
+                },
+                'pizzaria',
+                { expiresIn: '1h' }
+            );
+            res.status(200).json({ token, userId: loadedUser.id.toString() });
+        
         })
         .catch(err => {
             if (!err.statusCode) {
