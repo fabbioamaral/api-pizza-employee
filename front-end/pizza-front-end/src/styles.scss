@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 .invisible { visibility: hidden;}
 
 .d-none { display: none !important; }
@@ -219,33 +219,33 @@
     margin-bottom:0px; 
 }                      
                        
-.mb-10px{              
+.mb-10px {              
     margin-bottom:10px;
 }                      
                        
-.mb-20px{              
+.mb-20px {              
     margin-bottom:20px;
 }                      
                        
-.mb-30px{              
+.mb-30px {              
     margin-bottom:30px;
 }
 
-.mb-40px{              
+.mb-40px {              
   margin-bottom:40px;
 }
 
-.mb-50px{              
+.mb-50px {              
     margin-bottom:50px;
 }
-.mb-60px{  
+.mb-60px {  
   margin-bottom:60px;
 }                      
-.ml-0px{
+.ml-0px {
     margin-left: 0px;            
 }                                
                                  
-.ml-10px{                        
+.ml-10px {                        
     margin-left: 10px;           
 } 
 
@@ -309,31 +309,31 @@
 .font-weight-900, .font-weight-black{
   font-weight: 900 !important;
 }
-.events-none{
+.events-none {
     pointer-events: none;                  
 }                   
                                                                                                          
-.white-color{                                                           
+.white-color {                                                           
     color: white;                                                       
 }
                                                                         
-.background-white-color{                                                
+.background-white-color {                                                
     background: white !important;                                       
 }                                                                    
                                                                    
-.text-center{
+.text-center {
   text-align: center !important;
 }
 
-.white-space-nowrap{               
+.white-space-nowrap {               
     white-space: nowrap !important;
 }
 
-.white-space-normal{
+.white-space-normal {
   white-space: normal !important;
 }
 
-.white-space-break-spaces{
+.white-space-break-spaces {
   white-space: break-spaces !important;
 }
 
@@ -349,4 +349,9 @@
 .z-index-forward {
   position: relative;
   z-index: 9999;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }
