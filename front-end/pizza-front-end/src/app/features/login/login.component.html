@@ -1,0 +1,46 @@
+<div class="container d-flex flex-items-center flex-justify-center">
+  <div class="login-card">
+    <h2 class="text-center mb-20px">Pizza Management System</h2>
+    <form
+      class="d-flex flex-column flex-items-center"
+      [formGroup]="credentialsForm"
+      (ngSubmit)="login()"
+    >
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="example@example.com"
+          [formControl]="email"
+        />
+        <mat-error *ngIf="email.invalid">{{
+          getEmailErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          [formControl]="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.invalid">{{
+          getPasswordErrorMessage()
+        }}</mat-error>
+      </mat-form-field>
+      <button type="submit" mat-stroked-button class="w-50" color="primary">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
