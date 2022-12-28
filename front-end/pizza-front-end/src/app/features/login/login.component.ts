@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { LoginResponse } from './model/login.model';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
     const email = this.credentialsForm.value.email as string;
     const password = this.credentialsForm.value.password as string;
   
-    this.authService.login(email, password).subscribe(() => {
+    this.authService.login(email, password).subscribe((result: LoginResponse) => {
+      localStorage.setItem('token', result.token);
       this.router.navigateByUrl('/home');
     });
   }
