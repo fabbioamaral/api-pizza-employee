@@ -1,0 +1,54 @@
+<div
+  class="container background-grey d-flex flex-items-center flex-justify-center"
+>
+  <div class="signup-card p-10px border-radius-10px background-white">
+    <h2 class="text-center mb-20px">Sign Up</h2>
+    <form
+      class="d-flex flex-column flex-items-center"
+      [formGroup]="signupForm"
+      (ngSubmit)="signup()"
+    >
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="example@example.com"
+          formControlName="email"
+        />
+        <mat-error *ngIf="signupForm.get('email').invalid"
+          >Incorrent e-mail format</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <mat-form-field class="w-100" appearance="outline">
+        <mat-label>Confirm your password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        <mat-error *ngIf="signupForm.hasError('matching')"
+          >Passwords don't match</mat-error
+        >
+      </mat-form-field>
+      <button
+        type="submit"
+        mat-stroked-button
+        class="w-50 mb-10px"
+        color="primary"
+      >
+        Sign Up
+      </button>
+      <button
+        type="button"
+        mat-stroked-button
+        class="w-50 mb-30px"
+        color="basic"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>

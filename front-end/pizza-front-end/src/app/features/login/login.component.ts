@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  goToSignUp() {
+    this.router.navigateByUrl('signup');
+  }
+
   private initForm() {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [Validators.required]);
@@ -55,5 +59,4 @@ export class LoginComponent implements OnInit {
     });
     this.hide = true;
   }
-
 }

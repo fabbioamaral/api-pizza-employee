@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomepageComponent } from './features/homepage/homepage.component';
-import { LoginComponent } from './features/login/login.component';
 
 const routes: Routes = [
   { path: '',
@@ -9,6 +7,9 @@ const routes: Routes = [
   },
   { path: 'home',
     loadChildren: () => import('../app/features/homepage/homepage.module').then(m => m.HomepageModule)
+  },
+  { path: 'signup',
+    loadChildren: () => import('../app/features/sign-up/signup.module').then(m => m.SignupModule)
   },
 ];
 

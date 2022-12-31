@@ -1,5 +1,7 @@
-<div class="container d-flex flex-items-center flex-justify-center">
-  <div class="login-card">
+<div
+  class="container background-grey d-flex flex-items-center flex-justify-center"
+>
+  <div class="login-card border-radius-10px p-10px background-white">
     <h2 class="text-center mb-20px">Pizza Management System</h2>
     <form
       class="d-flex flex-column flex-items-center"
@@ -11,7 +13,7 @@
         <input
           matInput
           placeholder="example@example.com"
-          [formControl]="email"
+          formControlName="email"
         />
         <mat-error *ngIf="email.invalid">{{
           getEmailErrorMessage()
@@ -23,7 +25,7 @@
         <input
           matInput
           [type]="hide ? 'password' : 'text'"
-          [formControl]="password"
+          formControlName="password"
         />
         <button
           mat-icon-button
@@ -42,5 +44,11 @@
         Login
       </button>
     </form>
+    <div class="d-flex flex-justify-center">
+      <p>
+        Don't have an account?
+        <a class="sign-up-link" (click)="goToSignUp()">Sign Up</a>
+      </p>
+    </div>
   </div>
 </div>
