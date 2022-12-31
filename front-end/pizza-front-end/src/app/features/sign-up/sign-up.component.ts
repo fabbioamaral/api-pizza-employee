@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { MessageService, TYPE_SNACK } from 'src/app/core/services/message.service';
 
 export default class CustomValidators {
   static match(controlName: string, matchControlName: string): ValidatorFn {
@@ -31,7 +32,9 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -39,10 +42,21 @@ export class SignUpComponent implements OnInit {
   }
 
   signup() {
+    if (this.signupForm.invalid) return;
+
+    const email = this.signupForm.value.email as string;
+    const password = this.signupForm.value.password as string;
+    this.authService.signup(email, password).subscribe(() => {
+      this.messageService.displaySnackBar('User created successfully!', TYPE_SNACK.success);
+      this.router.navigateByUrl('');
+    },
+    err => {
+      this.messageService.displaySnackBar(`Error. ${err.message}`, TYPE_SNACK.error);
+    });
   }
 
   cancel() {
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('');
   }
 
   private initForm() {
