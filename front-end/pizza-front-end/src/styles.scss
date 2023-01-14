@@ -87,6 +87,10 @@
   height: 100%;
 }
 
+.container {
+  padding: 30px !important;
+}
+
 .position-center-absolute{
   position: absolute;
   top: 50%;
@@ -141,6 +145,10 @@
 
 .mt-10px{
     margin-top: 10px;
+}
+
+.mb-0px {
+  margin-bottom: 0px !important;
 }
 
 .my-4px{
