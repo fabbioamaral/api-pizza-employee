@@ -1,0 +1,19 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="d-flex h-80">
+    <div class="left-side d-flex flex-column">
+      <div class="info-customer pb-10px">
+        <app-info-customer></app-info-customer>
+      </div>
+      <div class="order-details">
+        <app-order-details></app-order-details>
+      </div>
+    </div>
+    <div class="right-side">
+      <app-products-selection
+        *ngIf="isSelectingProducts"
+      ></app-products-selection>
+      <app-order-payment *ngIf="!isSelectingProducts"></app-order-payment>
+    </div>
+  </div>
+</div>

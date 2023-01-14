@@ -14,6 +14,7 @@ import { employeeReducer } from './core/store/reducers/employee.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { OrdersComponent } from './features/orders/orders.component';
 
 @NgModule({
   declarations: [
