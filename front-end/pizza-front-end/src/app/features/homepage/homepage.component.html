@@ -1,7 +1,18 @@
 <div class="container">
-  <header>
-    <h1>Management System - The Pizza's King</h1>
-  </header>
+  <div class="d-flex flex-justify-between">
+    <header>
+      <h1>Management System - The Pizza's King</h1>
+    </header>
+    <div class="d-flex flex-items-center" (click)="logout()">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="logout icon"
+        fontIcon="logout"
+        class="icon mr-4px"
+      ></mat-icon>
+      <a>Logout</a>
+    </div>
+  </div>
 
   <main>
     <div class="card" routerLink="/orders/place-order">
