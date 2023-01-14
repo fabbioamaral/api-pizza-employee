@@ -1,0 +1,66 @@
+<div class="container background-grey">
+  <app-header [subtitle]="title"></app-header>
+  <!-- <header class="background-grey">
+    <h1>Management System - The Pizza's King</h1>
+    <h2 class="mb-0px">{{ title }}</h2>
+  </header> -->
+  <div class="background-grey d-flex flex-items-center flex-justify-center">
+    <div class="employee-card p-10px border-radius-10px background-white">
+      <form
+        class="d-flex flex-column flex-items-center"
+        [formGroup]="employeeForm"
+        (ngSubmit)="save()"
+      >
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="fullName" />
+          <!-- <mat-error *ngIf="signupForm.get('email').invalid"
+              >Incorrent e-mail format</mat-error
+            > -->
+        </mat-form-field>
+
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Role</mat-label>
+          <input matInput formControlName="role" />
+        </mat-form-field>
+
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Salary</mat-label>
+          <input matInput type="number" formControlName="salary" />
+          <!-- <mat-error *ngIf="signupForm.hasError('matching')"
+              >Passwords don't match</mat-error
+            > -->
+        </mat-form-field>
+
+        <!-- TODO: apply cellphone mask -->
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Cellphone</mat-label>
+          <input matInput formControlName="cellphone" />
+        </mat-form-field>
+
+        <mat-form-field class="w-100" appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+
+        <button
+          type="submit"
+          mat-stroked-button
+          class="w-50 mb-10px"
+          color="primary"
+        >
+          Save
+        </button>
+        <button
+          type="button"
+          mat-stroked-button
+          class="w-50 mb-30px"
+          color="basic"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

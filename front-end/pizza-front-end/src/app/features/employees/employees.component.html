@@ -1,8 +1,5 @@
 <div class="container">
-  <header>
-    <h1>Management System - The Pizza's King</h1>
-    <h2>Employees</h2>
-  </header>
+  <app-header subtitle="Employees"></app-header>
 
   <div class="d-flex flex-justify-between w-80">
     <mat-form-field class="w-100">
@@ -16,7 +13,12 @@
     </mat-form-field>
 
     <div class="w-100 d-flex flex-justify-end">
-      <button class="add-employee" mat-raised-button color="primary">
+      <button
+        class="add-employee"
+        mat-raised-button
+        color="primary"
+        (click)="addEmployee()"
+      >
         Add Employee
       </button>
     </div>
@@ -57,19 +59,22 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon
-          aria-hidden="false"
-          aria-label="update icon"
-          fontIcon="edit"
-          class="icon"
-        ></mat-icon>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="delete icon"
-          fontIcon="delete"
-          class="icon"
-          (click)="abc()"
-        ></mat-icon>
+        <button mat-button (click)="goToEditEmployee(element)">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="update icon"
+            fontIcon="edit"
+            class="icon"
+          ></mat-icon>
+        </button>
+        <button mat-button (click)="openDialog('0ms', '0ms', element)">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="delete icon"
+            fontIcon="delete"
+            class="icon"
+          ></mat-icon>
+        </button>
       </td>
     </ng-container>
 
