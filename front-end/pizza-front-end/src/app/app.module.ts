@@ -9,10 +9,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { employeeReducer } from './core/store/reducers/employee.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -22,13 +27,20 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    StoreModule.forRoot({employee: employeeReducer}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },],
+  },
+  {
+    provide: MAT_DIALOG_DEFAULT_OPTIONS,
+    useValue: {hasBackdrop: false}
+  }  
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
