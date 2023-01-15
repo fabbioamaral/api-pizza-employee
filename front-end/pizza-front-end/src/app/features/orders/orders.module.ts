@@ -9,6 +9,7 @@ import { OrderPaymentComponent } from './order-payment/order-payment.component';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { OrdersComponent } from './orders.component';
+import { DialogOrderSelectionDetailsComponent } from './dialog-order-selection-details/dialog-order-selection-details.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { OrdersComponent } from './orders.component';
     InfoCustomerComponent,
     OrderDetailsComponent,
     ProductsSelectionComponent,
-    OrderPaymentComponent
+    OrderPaymentComponent,
+    DialogOrderSelectionDetailsComponent
   ],
   imports: [
     CommonModule,

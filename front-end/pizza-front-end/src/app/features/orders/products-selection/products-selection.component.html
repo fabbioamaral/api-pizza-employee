@@ -1,0 +1,19 @@
+<mat-tab-group (selectedTabChange)="selectTab($event)">
+  <mat-tab [label]="tab.name" *ngFor="let tab of tabs">
+    <div class="card-container p-10px d-flex">
+      <div *ngFor="let card of tab.cards">
+        <div class="card p-8px d-flex flex-column flex-items-center mr-10px">
+          <h3>{{ card }}</h3>
+          <button
+            mat-mini-fab
+            color="primary"
+            aria-label="Add item"
+            (click)="selectDialogProductDetails('0ms', '0ms', card)"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

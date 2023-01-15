@@ -87,6 +87,10 @@
   height: 100%;
 }
 
+.h-80 {
+  height: 80%;
+}
+
 .container {
   padding: 30px !important;
 }
@@ -98,11 +102,11 @@
   transform: translate(-50%, -50%);
 }
 
-.p-5px{
+.p-5px {
     padding: 5px;
 }
 
-.p-8px{
+.p-8px {
     padding: 8px;
 }
 
@@ -123,6 +127,10 @@
   padding-bottom: 0;
 }
 
+.pb-10px {
+  padding-bottom: 10px;
+}
+
 .pt-0{
   padding-top: 0;
 }
@@ -139,7 +147,7 @@
     margin-right: 10px;
 }
 
-.mt-4px{
+.mt-4px {
     margin-top: 4px;
 }
 
@@ -227,9 +235,14 @@
 .mt-75px{
   margin-top: 75px !important;
 }
+
 .mb-0{
     margin-bottom:0px; 
-}                      
+}   
+
+.mb-5px {
+    margin-bottom: 5px !important; 
+}          
                        
 .mb-10px {              
     margin-bottom:10px !important;
