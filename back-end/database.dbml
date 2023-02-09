@@ -1,0 +1,49 @@
+Project PizzaManagementApp {
+    database_type: 'Mysql'
+    Note: ''
+}
+
+Table products {
+    id int [pk, increment]
+    name varchar
+    price decimal
+    description varchar
+    category int [ref: > product_categories.id]
+    border int [ref: > pizza_borders.id]
+    flavor1 int [ref: > flavors.id]
+    flavor2 int [ref: > flavors.id]
+    notes varchar
+    size size_options
+}
+
+Table product_categories {
+    id int [pk, increment]
+    name varchar
+}
+
+Table pizza_borders {
+    id int [pk, increment]
+    name varchar
+    price decimal
+    size size_options
+}
+
+Table flavors {
+    id int [pk, increment]
+    name varchar
+    category_flavor int [ref: > categories_flavor.id]
+}
+
+Table categories_flavor {
+    id int [pk, increment]
+    name varchar
+    price decimal
+    size size_options
+}
+
+Enum size_options {
+    small
+    medio
+    large
+    extra_large
+}

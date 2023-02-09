@@ -134,10 +134,10 @@ ProductCategories.hasMany(Product, {
 });
 
 
-module.exports = Product;
-
-
-// PAREI NA DÚVIDA
-/**
- * atualizar o dbdocs
- */
+module.exports = {
+    Product,
+    ProductCategories,
+    PizzaBorders,
+    PizzaFlavors,
+    CategoryPizzaFlavors
+}
