@@ -85,8 +85,7 @@ exports.updateEmployee = (req, res, next) => {
                 const error = new Error('Could not find employee.');
                 error.statusCode = 404;
                 throw error; 
-            }
-            if (employee) {
+            } else {
                 const updatedFullName = req.body.fullName;
                 const updatedRole = req.body.role;
                 const updatedSalary = req.body.salary;

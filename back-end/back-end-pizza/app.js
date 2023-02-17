@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const sequelize = require('./database');
 const employeesRoutes = require('./routes/employees');
 const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/product');
 
 app.use(bodyParser.json());
 
@@ -14,8 +15,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('', employeesRoutes);
 app.use('/auth', authRoutes);
+app.use('/employee', employeesRoutes);
+app.use('/product', productRoutes);
 
 app.use((error, req, res, next) => {
     console.log(error);

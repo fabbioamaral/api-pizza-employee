@@ -20,6 +20,10 @@ const Product = sequelize.define('product', {
     description: {
         type: Sequelize.STRING,
     },
+    category: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     pizzaBorder: {
         type: Sequelize.STRING
     },
@@ -114,7 +118,8 @@ Product.hasOne(ProductCategories);
 ProductCategories.hasMany(Product, {
     foreignKey: {
         allowNull: false
-    }
+    },
+    onDelete: 'CASCADE'
 });
 
 // One-to-Many relationship: Product-Pizza_Border
