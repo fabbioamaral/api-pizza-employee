@@ -87,12 +87,12 @@ const PizzaFlavors = sequelize.define('pizza_flavors', {
         allowNull: false
     },
     category: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 });
 
-const CategoryPizzaFlavors = sequelize.define('pizza_flavors', {
+const CategoryPizzaFlavors = sequelize.define('category_pizza_flavors', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -129,8 +129,6 @@ PizzaBorders.hasMany(Product);
 // One-to-Many relationship: Pizza_Flavor-Categories_Pizza_Flavor
 PizzaFlavors.hasOne(CategoryPizzaFlavors);
 CategoryPizzaFlavors.hasMany(PizzaFlavors);
-
-
 
 ProductCategories.hasMany(Product, {
     foreignKey: {
