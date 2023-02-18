@@ -24,13 +24,7 @@ const Product = sequelize.define('product', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    pizzaBorder: {
-        type: Sequelize.STRING
-    },
-    pizzaFlavor1: {
-        type: Sequelize.STRING
-    },
-    pizzaFlavor2: {
+    categoryPizza: {
         type: Sequelize.STRING
     },
     size: {
