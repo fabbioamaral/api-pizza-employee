@@ -1,6 +1,13 @@
 const { Sequelize } = require('sequelize').Sequelize;
-const sequelize = new Sequelize('api_employee', 'root', '123456789', {
-    dialect: 'mysql',
+
+// MYSQL
+// const sequelize = new Sequelize('api_employee', 'root', '123456789', {
+//     dialect: 'mysql',
+//     host: 'localhost'
+// });
+
+const sequelize = new Sequelize('BE_node', 'fabbio', '123456789', {
+    dialect: 'postgres',
     host: 'localhost'
 });
 
