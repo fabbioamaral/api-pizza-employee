@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const sequelize = require('./database');
 const employeesRoutes = require('./routes/employees');
 const authRoutes = require('./routes/auth');
-const productRoutes = require('./routes/product');
-const orderRoutes = require('./routes/order');
+//const productRoutes = require('./routes/product');
+//const orderRoutes = require('./routes/order');
 const addressRoutes = require('./routes/address');
 const clientRoutes = require('./routes/client');
 const deliveryFeeRoutes = require('./routes/delivery-fee');
@@ -21,8 +21,8 @@ app.use((req, res, next) => {
 
 app.use('/auth', authRoutes);
 app.use('/employee', employeesRoutes);
-app.use('/product', productRoutes);
-app.use('order', orderRoutes);
+//app.use('/product', productRoutes);
+//app.use('order', orderRoutes);
 app.use('/address', addressRoutes);
 app.use('/client', clientRoutes);
 app.use('/delivery-fee', deliveryFeeRoutes);
